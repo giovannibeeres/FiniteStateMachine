@@ -1,7 +1,7 @@
 # FiniteStateMachine
 JavaScript Finite State Machine ( Node.js Compatible )
 
-# How to use
+## How to use
 
 Pretty Simple
 
@@ -35,4 +35,22 @@ object.machine.update();
 
 ..the Machine will at it's first update init the generic enter function.
 After that the custom update function will be initiated until a new State will be set.
-Which would mean the generic exit function will be executed.
+Which would mean the generic exit function would be executed.
+
+Visual example which would be executed on machine.update() :
+- enter
+- update
+- update
+- ..
+
+## Enter & Exit State Functions
+
+It is possible to control the *enter* & *exit* functions with the right *returns*.
+To leave the *enter* substate you **need** to return **true** else it will stay on that substate forever.
+It is also possible to do that this way:
+
+```javascript
+state.enter = function(){
+	return state.NEXT;
+}
+```
