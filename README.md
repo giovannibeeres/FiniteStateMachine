@@ -10,12 +10,29 @@ var object = function(){
 	
 	this.START_STATE = "START_STATE";
 	
+	// generic State
 	var customState = new State();
-	customState.update = function(){ console.log("update"); };
 	
+	// custom update State
+	customState.update = function(){ console.log("updated"); };
+	
+	// init Machine
 	this.machine = new StateMachine();
-	this.machine.addState(this.START_MACHINE, customState);
 	
-	this.machine.setState(this.START_MACHINE);
+	// add State
+	this.machine.addState(this.START_STATE, customState);
+	
+	// set Machine onto this State
+	this.machine.setState(this.START_STATE);
 };
 ```
+
+On Updating the StateMachine..
+
+```javascript
+object.machine.update();
+```
+
+..the Machine will at it's first update init the generic enter function.
+After that the custom update function will be initiated until a new State will be set.
+Which would mean the generic exit function will be executed.
