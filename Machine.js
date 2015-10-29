@@ -33,10 +33,11 @@ StateMachine.prototype = {
 	},
 	
 	addState:function(_stateName, _state, _constraints){
-		if( this.states[_stateName] == null )
+		if( this.states[_stateName] == null && typeof _stateName == "string" && _state != null && typeof _constraints == "array" )
 		{
 			_state.NEXT = true;
 			_state.HOLD = false;
+			_state.CONSTRAINTS = _constraints; // whitelist
 			
 			this.states[_stateName] = _state;
 			
@@ -47,14 +48,14 @@ StateMachine.prototype = {
 	},
 	
 	setState:function(_stateName){
-		if(this.current != _stateName)
+		if(this.current != _stateName && this.states[_stateName])
 		{
 			if( this.current == null )
 			{
 				this.current = _stateName;
 				this.state = this.states[_stateName];
 				this.update = this._enter;
-			}else{
+			}else if(this.state.CONSTRAINTS.indexOf(_stateName) > -1){
 				this.next = _stateName;
 				this.update = this._exit;
 			}
