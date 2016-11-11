@@ -6,9 +6,9 @@ JavaScript Finite State Machine ( Node.js Compatible )
 Pretty Simple
 
 ```javascript
-var object = function(){
+var START_STATE = function(){
 	
-	this.START_STATE = "START_STATE";
+	this.id = "START_STATE";
 	
 	// generic State
 	var customState = new State();
@@ -20,10 +20,10 @@ var object = function(){
 	this.machine = new StateMachine();
 	
 	// add State
-	this.machine.addState(this.START_STATE, customState);
+	this.machine.addState(this.id, customState);
 	
 	// set Machine onto this State
-	this.machine.setState(this.START_STATE);
+	this.machine.setState(this.id);
 };
 ```
 
@@ -33,7 +33,7 @@ On Updating the StateMachine..
 object.machine.update();
 ```
 
-..the Machine will at it's first update init the generic enter function.
+..the Machine will at it's first update init the default enter function.
 After that the custom update function will be initiated until a new State will be set.
 Which would mean the generic exit function would be executed.
 
