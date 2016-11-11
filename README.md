@@ -25,13 +25,13 @@ machine.setState(START_STATE.id)
 ```
 
 
-On Updating the StateMachine..
+To Update the StateMachine use
 
 ```javascript
-object.machine.update();
+machine.update();
 ```
 
-..the Machine will at it's first update init the default enter function.
+..the Machine will at it's first update init the enter function.
 After that the custom update function will be initiated until a new State will be set.
 Which would mean the generic exit function would be executed.
 
@@ -49,6 +49,6 @@ It is also possible to do that this way:
 
 ```javascript
 state.enter = function(){
-	return state.NEXT;
+	return Math.random() > 0.5 ? state.NEXT : state.HOLD
 }
 ```
