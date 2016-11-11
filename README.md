@@ -6,26 +6,24 @@ JavaScript Finite State Machine ( Node.js Compatible )
 Pretty Simple
 
 ```javascript
-var START_STATE = function(){
+let
+machine = new StateMachine(),
+START_STATE = function(){
 	
 	this.id = "START_STATE";
-	
-	// generic State
-	var customState = new State();
-	
-	// custom update State
-	customState.update = function(){ console.log("updated"); };
-	
-	// init Machine
-	this.machine = new StateMachine();
+
+	this.enter = () => START_STATE.NEXT
+	this.update = () => {}
+	this.exit = () => START_STATE.NEXT
 	
 	// add State
-	this.machine.addState(this.id, customState);
-	
-	// set Machine onto this State
-	this.machine.setState(this.id);
-};
+	machine.addState(this.id, START_STATE);
+}
+
+// set Machine onto this State
+machine.setState(START_STATE.id)
 ```
+
 
 On Updating the StateMachine..
 
