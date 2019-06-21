@@ -15,10 +15,10 @@ START_STATE = function(){
 	this.enter = () => START_STATE.NEXT
 	this.update = () => {}
 	this.exit = () => START_STATE.NEXT
-	
-	// add State
-	machine.addState(this.id, START_STATE);
 }
+
+// add State
+machine.addState(START_STATE.id, START_STATE);
 
 // set Machine onto this State
 machine.setState(START_STATE.id)
